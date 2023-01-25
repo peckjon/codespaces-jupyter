@@ -29,4 +29,4 @@ jobs:
           message: steps.run_notebook.outputs
       - uses: mshick/add-pr-comment@v2
         with:
-          message: ${{steps.run_notebook.outputs.stdout }}
+          message: ${{steps.run_notebook.outputs }}
