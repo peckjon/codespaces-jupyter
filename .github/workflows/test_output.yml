@@ -23,4 +23,10 @@ jobs:
       # Place notebook output in PR comment
       - uses: mshick/add-pr-comment@v2
         with:
+          message: "Test output: "
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: steps.run_notebook.outputs
+      - uses: mshick/add-pr-comment@v2
+        with:
           message: ${{join(steps.run_notebook.outputs.*, '\n')}}
