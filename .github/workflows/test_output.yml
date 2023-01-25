@@ -31,4 +31,6 @@ jobs:
         with:
           message: |
             "Result:"
-            ${{steps.run_notebook.outputs.length}}
+            ${{join(steps.run_notebook.outputs.*,'\n')}}
+      - run: |
+          echo ${{join(steps.run_notebook.outputs.*,'\n')}}
