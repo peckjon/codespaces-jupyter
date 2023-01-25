@@ -41,11 +41,17 @@ jobs:
 
       # Test the model
       - uses: yaananth/run-notebook@v2
+        id: run_notebook
         env:
           RUNNER: ${{ toJson(runner) }}
           SECRETS: ${{ toJson(secrets) }}
           GITHUB: ${{ toJson(github) }}
         with:
           notebook: "notebooks/image-classifier.ipynb"
-          isReport: False
-          poll: True
+          isReport: True
+          poll: False
+
+      # Place notebook output in PR comment
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: ${{join(steps.run_notebook.outputs.*, '\n')}}
