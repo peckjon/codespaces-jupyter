@@ -29,8 +29,9 @@ jobs:
           message: steps.run_notebook.outputs
       - uses: mshick/add-pr-comment@v2
         with:
-          message: |
-            "Result:"
-            ${{join(steps.run_notebook.outputs.*,'\n')}}
-      - run: |
-          echo ${{join(steps.run_notebook.outputs.*,'\n')}}
+          message: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+        env:
+          RUNNER: ${{ toJson(runner) }}
+      - run: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+        env:
+          RUNNER: ${{ toJson(runner) }}
