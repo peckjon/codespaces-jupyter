@@ -33,6 +33,12 @@ jobs:
       - name: pip install requirements
         run: python3 -m pip install -r requirements.txt
 
+      # Cache the Python environment 
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }} #see https://github.com/actions/setup-python/pull/418
+          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
+
       # Test the model
       - uses: yaananth/run-notebook@v2
         with:
