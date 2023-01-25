@@ -1,10 +1,11 @@
 name: Evaluate Image Classifier
 
 on:
-  # Triggers the workflow on pull request if image-classifier.ipynb has changed
+  # Triggers the workflow on pull request if image-classifier.ipynb or this workflow have changed
   pull_request:
     paths:
       - 'notebooks/image-classifier.ipynb'
+      - '.github/workflows/evaluate_model.yml'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -53,5 +54,3 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           message-path: ${{ RUNNER.temp }}/nb-runner/image-classifier-accuracy.txt
-        env:
-          RUNNER: ${{ toJson(runner) }}
