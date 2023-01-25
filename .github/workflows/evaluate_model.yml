@@ -29,19 +29,18 @@ jobs:
         with:
           python-version: '3.10'
 
-      # Run pip install using requirements.txt
-      - name: pip install requirements
-        run: python3 -m pip install -r requirements.txt
-
-      # Cache the Python environment 
+      # Restore cache of Python environment (if available)
       - uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }} #see https://github.com/actions/setup-python/pull/418
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
+          
+      # Run pip install using requirements.txt
+      - name: pip install requirements
+        run: python3 -m pip install -r requirements.txt
 
       # Test the model
       - uses: yaananth/run-notebook@v2
-        id: run_notebook
         env:
           RUNNER: ${{ toJson(runner) }}
           SECRETS: ${{ toJson(secrets) }}
@@ -53,10 +52,7 @@ jobs:
 
       # Place notebook output in PR comment
       - uses: mshick/add-pr-comment@v2
+        env:
+          RUNNER: ${{ toJson(runner) }}
         with:
           message: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
-        env:
-          RUNNER: ${{ toJson(runner) }}
-      - run: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
-        env:
-          RUNNER: ${{ toJson(runner) }}
