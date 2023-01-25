@@ -58,4 +58,4 @@ jobs:
         env:
           RUNNER: ${{ toJson(runner) }}
         with:
-          message: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+          message-path: ${{ RUNNER.temp }}/nb-runner/image-classifier.html
