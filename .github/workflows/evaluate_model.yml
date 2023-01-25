@@ -53,9 +53,14 @@ jobs:
           isReport: True
           poll: False
 
-      # Place notebook output in PR comment
+      # extract model accuracy from output
+      - run: >
+          grep '^Accuracy for class' ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+          >> ${{ RUNNER.temp }}/nb-runner/image-classifier-accuracy.txt
+      
+      # Creat PR comment
       - uses: mshick/add-pr-comment@v2
         env:
           RUNNER: ${{ toJson(runner) }}
         with:
-          message-path: ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+          message-path: ${{ RUNNER.temp }}/nb-runner/image-classifier-accuracy.txt
