@@ -54,4 +54,9 @@ jobs:
       # Place notebook output in PR comment
       - uses: mshick/add-pr-comment@v2
         with:
-          message: ${{join(steps.run_notebook.outputs.*, '\n')}}
+          message: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+        env:
+          RUNNER: ${{ toJson(runner) }}
+      - run: cat ${{ RUNNER.temp }}/nb-runner/image-classifier.html
+        env:
+          RUNNER: ${{ toJson(runner) }}
