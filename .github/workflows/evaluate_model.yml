@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    env:
-      RUNNER: ${{ toJson(runner) }}
-      SECRETS: ${{ toJson(secrets) }}
-      GITHUB: ${{ toJson(github) }}
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -43,6 +39,10 @@ jobs:
           notebook: "notebooks/image-classifier.ipynb"
           isReport: True
           poll: False
+        env:
+          RUNNER: ${{ toJson(runner) }}
+          SECRETS: ${{ toJson(secrets) }}
+          GITHUB: ${{ toJson(github) }}
 
       # extract model accuracy from output
       - run: >
@@ -53,3 +53,5 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           message-path: ${{ RUNNER.temp }}/nb-runner/image-classifier-accuracy.txt
+        env:
+          RUNNER: ${{ toJson(runner) }}
