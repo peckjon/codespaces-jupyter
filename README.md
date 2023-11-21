@@ -8,4 +8,4 @@ Everything you do here is contained within this one codespace. There is no repos
 
 # Extending model evaluation to GitHub Actions
 
-This repo extends the original [Codespaces & Notebooks demo](https://github.com/peckjon/codespaces-jupyter)https://github.com/peckjon/codespaces-jupyter by adding a [simple workflow](https://github.com/peckjon/codespaces-jupyter/blob/main/.github/workflows/evaluate_model.yml) to demonstrate how models can be analyzed during the [course of a Pull Request](https://github.com/peckjon/codespaces-jupyter/pull/7#issuecomment-1431828118)https://github.com/peckjon/codespaces-jupyter/pull/7#issuecomment-1431828118, informing the approver and optionally blocking the PR.
+This repo extends the original [Codespaces & Notebooks demo](https://github.com/peckjon/codespaces-jupyter) by adding a [simple workflow](https://github.com/peckjon/codespaces-jupyter/blob/main/.github/workflows/evaluate_model.yml) to demonstrate how models can be analyzed during the [course of a Pull Request](https://github.com/peckjon/codespaces-jupyter/pull/7#issuecomment-1431828118), informing the approver and optionally blocking the PR.
